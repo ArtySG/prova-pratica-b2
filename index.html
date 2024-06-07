@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova Construção de Software Web B2</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<h2>Formulário de Notas</h2>
+
+<form id="notasForm">
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" name="nome" required><br><br>
+    
+    <label for="matricula">Matrícula:</label><br>
+    <input type="text" id="matricula" name="matricula" required><br><br>
+    
+    <label for="nota1">Nota 1:</label><br>
+    <input type="number" id="nota1" name="nota1" br><br>
+    
+    <label for="nota2">Nota 2:</label><br>
+    <input type="number" id="nota2" name="nota2" br><br>
+    
+    <button type="button" onclick="fazertabela()">Fazer tabela</button>
+</form>
+
+<br><br>
+
+<table id="tabela">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Matrícula</th>
+            <th>Nota 1</th>
+            <th>Nota 2</th>
+            <th>Média</th>
+            <th>Situação</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script>
+    function fazertabela() {
+        var nome = document.getElementById('nome').value;
+        var matricula = document.getElementById('matricula').value;
+        var nota1 = parseFloat(document.getElementById('nota1').value);
+        var nota2 = parseFloat(document.getElementById('nota2').value);
+        var media = (nota1 + nota2) / 2;
+        var situacao = media >= 5 ? "Aprovado" : "Reprovado";
+
+        var tabela = document.getElementById('tabela').getElementsByTagName('tbody')[0];
+        tabela.innerHTML = ""; 
+
+        var linha = tabela.insertRow();
+        linha.classList.add("linha");
+
+        var celulaNome = linha.insertCell(0);
+        var celulaMatricula = linha.insertCell(1);
+        var celulaNota1 = linha.insertCell(2);
+        var celulaNota2 = linha.insertCell(3);
+        var celulaMedia = linha.insertCell(4);
+        var celulaSituacao = linha.insertCell(5);
+
+        celulaNome.innerHTML = nome;
+        celulaMatricula.innerHTML = matricula;
+        celulaNota1.innerHTML = nota1;
+        celulaNota2.innerHTML = nota2;
+        celulaMedia.innerHTML = media.toFixed(2);
+        celulaSituacao.innerHTML = situacao;
+    }
+</script>
+
+</body>
+</html>
